@@ -18,13 +18,14 @@ resource "snowflake_warehouse" "loading_wh" {
   comment        = "Warehouse for Airbyte raw syncs"
 }
 
+# Sized up to Large for marts workloads
 resource "snowflake_warehouse" "transforming_wh" {
   name           = "TRANSFORMING_WH"
-  warehouse_size = "SMALL"
+  warehouse_size = "LARGE"
   auto_suspend   = 60
   auto_resume    = true
   min_cluster_count = 1
-  max_cluster_count = 3
+  max_cluster_count = 5
   comment        = "Multi-cluster warehouse for dbt models execution"
 }
 
