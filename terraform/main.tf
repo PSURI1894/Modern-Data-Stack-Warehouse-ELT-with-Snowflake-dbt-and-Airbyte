@@ -27,3 +27,24 @@ resource "snowflake_warehouse" "transforming_wh" {
   max_cluster_count = 3
   comment        = "Multi-cluster warehouse for dbt models execution"
 }
+
+resource "snowflake_warehouse" "bi_wh" {
+  name           = "BI_WH"
+  warehouse_size = "X-SMALL"
+  auto_suspend   = 60
+  auto_resume    = true
+  comment        = "Warehouse for Lightdash and BI tool queries"
+}
+
+# Roles
+resource "snowflake_role" "loader_role" {
+  name = "LOADER_ROLE"
+}
+
+resource "snowflake_role" "transformer_role" {
+  name = "TRANSFORMER_ROLE"
+}
+
+resource "snowflake_role" "bi_role" {
+  name = "BI_ROLE"
+}
