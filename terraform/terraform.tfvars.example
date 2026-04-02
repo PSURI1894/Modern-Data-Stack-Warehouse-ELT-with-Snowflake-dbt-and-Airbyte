@@ -1,0 +1,3 @@
+snowflake_account  = "xy12345.us-east-1"
+snowflake_user     = "DBT_TRANSFORMER"
+snowflake_password = "SuperSecurePassword123!"
