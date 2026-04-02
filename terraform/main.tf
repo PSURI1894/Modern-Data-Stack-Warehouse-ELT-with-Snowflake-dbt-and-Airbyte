@@ -48,3 +48,22 @@ resource "snowflake_role" "transformer_role" {
 resource "snowflake_role" "bi_role" {
   name = "BI_ROLE"
 }
+
+# Grants
+resource "snowflake_database_grant" "raw_loader" {
+  database_name = snowflake_database.raw.name
+  privilege     = "USAGE"
+  roles         = [snowflake_role.loader_role.name]
+}
+
+resource "snowflake_database_grant" "analytics_transformer" {
+  database_name = snowflake_database.analytics.name
+  privilege     = "ALL"
+  roles         = [snowflake_role.transformer_role.name]
+}
+
+resource "snowflake_database_grant" "analytics_bi" {
+  database_name = snowflake_database.analytics.name
+  privilege     = "USAGE"
+  roles         = [snowflake_role.bi_role.name]
+}
