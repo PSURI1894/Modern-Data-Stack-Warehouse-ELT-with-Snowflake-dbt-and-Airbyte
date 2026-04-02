@@ -1,0 +1,13 @@
+{
+  "sourceName": "Postgres Production Database",
+  "config": {
+    "host": "postgres-prod.internal.company.com",
+    "port": 5432,
+    "database": "production_db",
+    "username": "airbyte_reader",
+    "ssl": true,
+    "replication_method": {
+      "method": "Standard"
+    }
+  }
+}
