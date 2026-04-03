@@ -7,7 +7,7 @@
     "username": "airbyte_reader",
     "ssl": true,
     "replication_method": {
-      "method": "Standard"
+      "method": "Logical CDC"
     }
   }
 }
