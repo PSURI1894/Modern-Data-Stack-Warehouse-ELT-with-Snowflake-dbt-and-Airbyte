@@ -1,0 +1,7 @@
+{
+  "sourceName": "Stripe Payments Gateway",
+  "config": {
+    "client_secret": "sk_live_...",
+    "start_date": "2025-01-01T00:00:00Z"
+  }
+}
