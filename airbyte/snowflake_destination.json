@@ -1,0 +1,10 @@
+{
+  "destinationName": "Snowflake Raw Warehouse",
+  "config": {
+    "host": "xy12345.us-east-1.snowflakecomputing.com",
+    "username": "AIRBYTE_LOADER",
+    "database": "RAW",
+    "schema": "AIRBYTE_RAW_SYNC",
+    "warehouse": "LOADING_WH"
+  }
+}
