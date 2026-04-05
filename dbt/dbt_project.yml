@@ -17,9 +17,13 @@ clean-targets:
 
 models:
   mds_analytics:
+    # Hierarchical configurations for schemas isolation
     staging:
       +materialized: view
+      +schema: staging
     intermediate:
       +materialized: view
+      +schema: intermediate
     marts:
       +materialized: table
+      +schema: marts
