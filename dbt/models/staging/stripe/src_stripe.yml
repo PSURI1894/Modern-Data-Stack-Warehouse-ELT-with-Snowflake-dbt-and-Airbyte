@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: RAW
+    schema: STRIPE
+    tables:
+      - name: customers
+      - name: charges
+      - name: subscriptions
