@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: postgres
+    database: RAW
+    schema: POSTGRES
+    tables:
+      - name: users
+      - name: events
