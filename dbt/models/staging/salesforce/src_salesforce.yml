@@ -6,5 +6,13 @@ sources:
     schema: SALESFORCE
     tables:
       - name: accounts
+        tests:
+          - unique:
+              column_name: id
+          - not_null:
+              column_name: id
       - name: opportunities
+        tests:
+          - unique:
+              column_name: id
       - name: leads
