@@ -6,4 +6,9 @@ sources:
     schema: POSTGRES
     tables:
       - name: users
+        tests:
+          - unique:
+              column_name: id
+          - not_null:
+              column_name: id
       - name: events
