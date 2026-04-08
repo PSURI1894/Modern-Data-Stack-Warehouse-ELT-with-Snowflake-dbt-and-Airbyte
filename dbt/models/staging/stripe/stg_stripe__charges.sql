@@ -3,13 +3,13 @@ with source as (
 ),
 renamed as (
     select
-        id as charge_id,
-        customer as stripe_customer_id,
-        amount as amount_cents,
+        cast(id as varchar) as charge_id,
+        cast(customer as varchar) as stripe_customer_id,
+        cast(amount as numeric) as amount_cents,
         {{ cents_to_dollars('amount') }} as amount_dollars,
-        currency,
-        status as payment_status,
-        created as charge_created_at
+        cast(currency as varchar) as currency,
+        cast(status as varchar) as payment_status,
+        cast(created as timestamp_ntz) as charge_created_at
     from source
 )
 select * from renamed
