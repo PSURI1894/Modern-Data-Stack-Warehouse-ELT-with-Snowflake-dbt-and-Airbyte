@@ -6,5 +6,8 @@ sources:
     schema: STRIPE
     tables:
       - name: customers
+        description: "Customer records with billing details from payment gateways"
       - name: charges
+        description: "Ledger transaction payment records"
       - name: subscriptions
+        description: "SaaS subscriptions profiles tracking cycles"
