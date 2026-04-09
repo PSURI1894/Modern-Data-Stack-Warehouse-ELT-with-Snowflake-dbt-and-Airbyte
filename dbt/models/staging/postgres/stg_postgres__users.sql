@@ -3,11 +3,11 @@ with source as (
 ),
 renamed as (
     select
-        id as postgres_user_id,
-        email as user_email,
-        username,
-        is_active,
-        created_at
+        cast(id as integer) as postgres_user_id,
+        cast(email as varchar) as user_email,
+        cast(username as varchar) as username,
+        cast(is_active as boolean) as is_active,
+        cast(created_at as timestamp_ntz) as created_at
     from source
 )
 select * from renamed
