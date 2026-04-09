@@ -3,11 +3,11 @@ with source as (
 ),
 renamed as (
     select
-        id as event_id,
-        user_id as postgres_user_id,
-        event_type,
-        session_id,
-        created_at as event_timestamp
+        cast(id as varchar) as event_id,
+        cast(user_id as integer) as postgres_user_id,
+        cast(event_type as varchar) as event_type,
+        cast(session_id as varchar) as session_id,
+        cast(created_at as timestamp_ntz) as event_timestamp
     from source
 )
 select * from renamed
