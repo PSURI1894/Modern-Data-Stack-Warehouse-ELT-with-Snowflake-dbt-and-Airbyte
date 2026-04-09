@@ -3,10 +3,10 @@ with source as (
 ),
 renamed as (
     select
-        id as stripe_customer_id,
-        email as customer_email,
-        name as customer_name,
-        created as created_at
+        cast(id as varchar) as stripe_customer_id,
+        lower(cast(email as varchar)) as customer_email,
+        cast(name as varchar) as customer_name,
+        cast(created as timestamp_ntz) as created_at
     from source
 )
 select * from renamed
