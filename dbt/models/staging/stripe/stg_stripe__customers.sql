@@ -1,3 +1,4 @@
+-- Timezone forced to UTC
 with source as (
     select * from {{ source('stripe', 'customers') }}
 ),
