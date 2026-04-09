@@ -3,12 +3,12 @@ with source as (
 ),
 renamed as (
     select
-        id as salesforce_account_id,
-        name as account_name,
-        type as account_type,
-        billingstate as billing_state,
-        billingcountry as billing_country,
-        createddate as created_at
+        cast(id as varchar) as salesforce_account_id,
+        cast(name as varchar) as account_name,
+        cast(type as varchar) as account_type,
+        cast(billingstate as varchar) as billing_state,
+        cast(billingcountry as varchar) as billing_country,
+        cast(createddate as timestamp_ntz) as created_at
     from source
 )
 select * from renamed
