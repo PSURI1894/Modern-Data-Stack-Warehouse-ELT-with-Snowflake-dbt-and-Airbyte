@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: postgres
+    database: RAW
+    schema: POSTGRES
+    tables:
+      - name: users
+        tests:
+          - unique:
+              column_name: id
+          - not_null:
+              column_name: id
+      - name: events
