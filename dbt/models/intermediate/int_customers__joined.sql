@@ -1,11 +1,15 @@
+-- CTE cleanups for query optimization
 with stripe_cust as (
-    select * from {{ ref('stg_stripe__customers') }}
+    select stripe_customer_id, customer_email, customer_name, created_at 
+    from {{ ref('stg_stripe__customers') }}
 ),
 sf_account as (
-    select * from {{ ref('stg_salesforce__accounts') }}
+    select salesforce_account_id, account_name, created_at 
+    from {{ ref('stg_salesforce__accounts') }}
 ),
 pg_user as (
-    select * from {{ ref('stg_postgres__users') }}
+    select postgres_user_id, user_email, created_at 
+    from {{ ref('stg_postgres__users') }}
 ),
 joined as (
     select
