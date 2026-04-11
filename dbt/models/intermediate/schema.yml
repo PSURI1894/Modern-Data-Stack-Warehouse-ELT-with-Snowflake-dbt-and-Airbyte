@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: int_customers__joined
+    description: "Multi-source matching of clients using fuzzy email mappings"
+  - name: int_subscriptions__joined
+    description: "Denormalised subscription entries aligned with resolved clients"
+  - name: int_opportunities__enriched
+    description: "Opportunities pipeline stats joined against billing classifications"
