@@ -11,6 +11,11 @@ joined as (
         cust.salesforce_account_id,
         subs.subscription_status,
         subs.plan_id,
+        case 
+            when subs.plan_id = 'plan_premium_monthly' then 15000
+            when subs.plan_id = 'plan_premium_yearly' then 120000
+            else 0
+        end as unit_amount_cents,
         subs.quantity,
         subs.started_at,
         subs.period_start_at,
