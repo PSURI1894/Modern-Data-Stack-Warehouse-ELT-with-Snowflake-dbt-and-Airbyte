@@ -1,4 +1,3 @@
--- Clean column naming standardizations
 with stripe_cust as (
     select stripe_customer_id, customer_email, customer_name, created_at 
     from {{ ref('stg_stripe__customers') }}
@@ -13,6 +12,7 @@ pg_user as (
 ),
 joined as (
     select
+        {{ generate_surrogate_key(['stripe_cust.stripe_customer_id', 'sf_account.salesforce_account_id']) }} as customer_sk,
         stripe_cust.stripe_customer_id,
         sf_account.salesforce_account_id,
         pg_user.postgres_user_id,
