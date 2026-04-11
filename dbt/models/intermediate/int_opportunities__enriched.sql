@@ -11,6 +11,10 @@ joined as (
         acc.account_name,
         opps.opportunity_name,
         opps.opportunity_amount,
+        case 
+            when opps.opportunity_amount > 50000 then 'Enterprise'
+            else 'Commercial'
+        end as account_tier,
         opps.stage_name,
         opps.probability,
         opps.close_date,
