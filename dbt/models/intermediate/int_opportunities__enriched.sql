@@ -22,5 +22,6 @@ joined as (
         opps.system_modstamp
     from opps
     left join acc on opps.salesforce_account_id = acc.salesforce_account_id
+    where opps.salesforce_account_id is not null
 )
 select * from joined
