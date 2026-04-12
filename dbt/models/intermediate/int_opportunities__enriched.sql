@@ -1,8 +1,21 @@
 with opps as (
-    select * from {{ ref('stg_salesforce__opportunities') }}
+    select
+        opportunity_id,
+        salesforce_account_id,
+        opportunity_name,
+        opportunity_amount,
+        stage_name,
+        probability,
+        close_date,
+        created_at,
+        system_modstamp
+    from {{ ref('stg_salesforce__opportunities') }}
 ),
 acc as (
-    select * from {{ ref('stg_salesforce__accounts') }}
+    select
+        salesforce_account_id,
+        account_name
+    from {{ ref('stg_salesforce__accounts') }}
 ),
 joined as (
     select
