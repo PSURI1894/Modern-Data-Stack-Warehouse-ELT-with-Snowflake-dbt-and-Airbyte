@@ -9,6 +9,7 @@ joined as (
         subs.subscription_id,
         subs.stripe_customer_id,
         cust.salesforce_account_id,
+        cust.customer_sk,
         coalesce(subs.subscription_status, 'unknown') as subscription_status,
         subs.plan_id,
         case 
