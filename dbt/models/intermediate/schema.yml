@@ -3,6 +3,11 @@ version: 2
 models:
   - name: int_customers__joined
     description: "Multi-source matching of clients using fuzzy email mappings"
+    columns:
+      - name: customer_sk
+        tests:
+          - unique
+          - not_null
   - name: int_subscriptions__joined
     description: "Denormalised subscription entries aligned with resolved clients"
   - name: int_opportunities__enriched
