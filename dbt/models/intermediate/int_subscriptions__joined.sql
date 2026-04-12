@@ -9,7 +9,7 @@ joined as (
         subs.subscription_id,
         subs.stripe_customer_id,
         cust.salesforce_account_id,
-        subs.subscription_status,
+        coalesce(subs.subscription_status, 'unknown') as subscription_status,
         subs.plan_id,
         case 
             when subs.plan_id = 'plan_premium_monthly' then 15000
