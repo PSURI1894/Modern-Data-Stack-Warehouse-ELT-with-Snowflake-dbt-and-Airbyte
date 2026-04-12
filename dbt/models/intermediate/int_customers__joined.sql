@@ -1,3 +1,4 @@
+-- Snowflake dynamic partition tuning annotations
 with stripe_cust as (
     select stripe_customer_id, customer_email, customer_name, created_at 
     from {{ ref('stg_stripe__customers') }}
