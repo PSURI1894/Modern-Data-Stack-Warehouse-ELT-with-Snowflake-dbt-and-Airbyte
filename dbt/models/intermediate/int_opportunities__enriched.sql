@@ -29,6 +29,10 @@ joined as (
             else 'Commercial'
         end as account_tier,
         opps.stage_name,
+        case 
+            when opps.stage_name in ('Closed Won', 'Closed Lost') then 'Closed'
+            else 'Pipeline'
+        end as stage_category,
         opps.probability,
         opps.close_date,
         opps.created_at,
