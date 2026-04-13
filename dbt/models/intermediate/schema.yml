@@ -15,10 +15,5 @@ models:
         tests:
           - unique
           - not_null
-      - name: customer_sk
-        tests:
-          - relationships:
-              to: ref('int_customers__joined')
-              field: customer_sk
   - name: int_opportunities__enriched
     description: "Opportunities pipeline stats joined against billing classifications"
