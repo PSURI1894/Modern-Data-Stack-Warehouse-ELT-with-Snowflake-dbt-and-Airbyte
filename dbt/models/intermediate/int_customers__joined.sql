@@ -1,4 +1,8 @@
--- Snowflake dynamic partition tuning annotations
+-- Multi-source Entity Resolution:
+-- Resolves user profiles across Payment gateway, CRM, and transactional Postgres logs.
+-- Rules:
+-- 1. Full name match on lowercase names (Stripe <=> Salesforce).
+-- 2. Lowercase Email match on user registration strings (Stripe <=> Postgres).
 with stripe_cust as (
     select stripe_customer_id, customer_email, customer_name, created_at 
     from {{ ref('stg_stripe__customers') }}
