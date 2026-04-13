@@ -10,5 +10,15 @@ models:
           - not_null
   - name: int_subscriptions__joined
     description: "Denormalised subscription entries aligned with resolved clients"
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_sk
+        tests:
+          - relationships:
+              to: ref('int_customers__joined')
+              field: customer_sk
   - name: int_opportunities__enriched
     description: "Opportunities pipeline stats joined against billing classifications"
