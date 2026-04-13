@@ -11,12 +11,14 @@ with opps as (
         system_modstamp
     from {{ ref('stg_salesforce__opportunities') }}
 ),
+
 acc as (
     select
         salesforce_account_id,
         account_name
     from {{ ref('stg_salesforce__accounts') }}
 ),
+
 joined as (
     select
         opps.opportunity_id,
@@ -41,4 +43,5 @@ joined as (
     left join acc on opps.salesforce_account_id = acc.salesforce_account_id
     where opps.salesforce_account_id is not null
 )
+
 select * from joined
