@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Core conformed client dimensions lookup database"
+    columns:
+      - name: customer_sk
+        tests:
+          - unique
+          - not_null
+  - name: fct_orders
+    description: "Stripe raw payment logs fact table"
+    columns:
+      - name: charge_id
+        tests:
+          - unique
+          - not_null
+  - name: fct_subscription_events
+    description: "Historical SaaS billing subscription events"
