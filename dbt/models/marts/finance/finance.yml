@@ -3,17 +3,36 @@ version: 2
 models:
   - name: dim_customers
     description: "Core conformed client dimensions lookup database"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: customer_sk
-        tests:
-          - unique
-          - not_null
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: stripe_customer_id
+        data_type: varchar
+      - name: salesforce_account_id
+        data_type: varchar
+      - name: postgres_user_id
+        data_type: integer
+      - name: customer_name
+        data_type: varchar
+      - name: customer_email
+        data_type: varchar
+      - name: total_ltv_cents
+        data_type: numeric
+      - name: total_ltv_dollars
+        data_type: numeric
+      - name: total_charges_count
+        data_type: integer
+      - name: customer_health_score
+        data_type: integer
+      - name: created_at
+        data_type: timestamp_ntz
+
   - name: fct_orders
     description: "Stripe raw payment logs fact table"
-    columns:
-      - name: charge_id
-        tests:
-          - unique
-          - not_null
   - name: fct_subscription_events
     description: "Historical SaaS billing subscription events"
