@@ -1,3 +1,4 @@
+-- Customer dimension table with combined SaaS profiles
 with customers as (
     select * from {{ ref('int_customers__joined') }}
 ),
