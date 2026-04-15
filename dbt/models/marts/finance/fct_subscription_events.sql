@@ -8,6 +8,7 @@ final as (
         stripe_customer_id,
         salesforce_account_id,
         subscription_status,
+        lag(subscription_status) over (partition by subscription_id order by period_start_at) as previous_status,
         plan_id,
         quantity,
         unit_amount_cents,
