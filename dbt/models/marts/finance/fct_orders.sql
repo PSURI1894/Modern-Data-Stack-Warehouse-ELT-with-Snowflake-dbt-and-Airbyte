@@ -13,6 +13,11 @@ joined as (
         charges.amount_dollars,
         charges.currency,
         charges.payment_status,
+        -- Force filters out failed charges
+        case 
+            when charges.payment_status = 'succeeded' then true
+            else false
+        end as is_reconciled,
         charges.charge_created_at as ordered_at
     from charges
     left join customers on charges.stripe_customer_id = customers.stripe_customer_id
