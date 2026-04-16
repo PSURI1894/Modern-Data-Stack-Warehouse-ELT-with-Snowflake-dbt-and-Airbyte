@@ -1,3 +1,8 @@
+{{
+    config(
+        cluster_by=['ordered_at::date']
+    )
+}}
 with charges as (
     select * from {{ ref('stg_stripe__charges') }}
 ),
@@ -13,7 +18,6 @@ joined as (
         charges.amount_dollars,
         charges.currency,
         charges.payment_status,
-        -- Force filters out failed charges
         case 
             when charges.payment_status = 'succeeded' then true
             else false
