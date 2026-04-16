@@ -34,5 +34,40 @@ models:
 
   - name: fct_orders
     description: "Stripe raw payment logs fact table"
+
   - name: fct_subscription_events
     description: "Historical SaaS billing subscription events"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: subscription_id
+        data_type: varchar
+      - name: customer_sk
+        data_type: varchar
+      - name: stripe_customer_id
+        data_type: varchar
+      - name: salesforce_account_id
+        data_type: varchar
+      - name: subscription_status
+        data_type: varchar
+      - name: previous_status
+        data_type: varchar
+      - name: plan_id
+        data_type: varchar
+      - name: quantity
+        data_type: integer
+      - name: unit_amount_cents
+        data_type: integer
+      - name: monthly_recurring_revenue_cents
+        data_type: integer
+      - name: monthly_recurring_revenue_dollars
+        data_type: numeric
+      - name: started_at
+        data_type: timestamp_ntz
+      - name: period_start_at
+        data_type: timestamp_ntz
+      - name: period_end_at
+        data_type: timestamp_ntz
+      - name: canceled_at
+        data_type: timestamp_ntz
