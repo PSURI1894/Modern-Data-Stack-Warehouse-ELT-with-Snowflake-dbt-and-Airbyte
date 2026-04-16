@@ -22,6 +22,11 @@ joined as (
             when charges.payment_status = 'succeeded' then true
             else false
         end as is_reconciled,
+        case 
+            when charges.amount_cents > 1000000 then 'enterprise-billing'
+            when charges.amount_cents > 100000 then 'standard-midmarket'
+            else 'base-retail'
+        end as order_tier,
         charges.charge_created_at as ordered_at
     from charges
     left join customers on charges.stripe_customer_id = customers.stripe_customer_id
