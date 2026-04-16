@@ -8,28 +8,39 @@ models:
         enforced: true
     columns:
       - name: customer_sk
+        description: "Surrogate primary hashing key"
         data_type: varchar
         constraints:
           - type: not_null
       - name: stripe_customer_id
+        description: "Natural key from payment system"
         data_type: varchar
       - name: salesforce_account_id
+        description: "Natural key from CRM platform"
         data_type: varchar
       - name: postgres_user_id
+        description: "Natural key from production databases"
         data_type: integer
       - name: customer_name
+        description: "Cleaned full legal customer name"
         data_type: varchar
       - name: customer_email
+        description: "Cleaned lowercase communication address"
         data_type: varchar
       - name: total_ltv_cents
+        description: "Customer life-time value measured in cents"
         data_type: numeric
       - name: total_ltv_dollars
+        description: "Customer life-time value measured in standard dollars"
         data_type: numeric
       - name: total_charges_count
+        description: "Number of completed payment orders"
         data_type: integer
       - name: customer_health_score
+        description: "Internal engagement index"
         data_type: integer
       - name: created_at
+        description: "Profile timestamp registration"
         data_type: timestamp_ntz
 
   - name: fct_orders
