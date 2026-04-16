@@ -45,6 +45,11 @@ models:
 
   - name: fct_orders
     description: "Stripe raw payment logs fact table"
+    columns:
+      - name: amount_cents
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
 
   - name: fct_subscription_events
     description: "Historical SaaS billing subscription events"
