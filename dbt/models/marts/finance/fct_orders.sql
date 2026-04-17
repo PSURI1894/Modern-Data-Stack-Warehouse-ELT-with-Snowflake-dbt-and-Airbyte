@@ -1,3 +1,4 @@
+-- Snowflake columnar partition key assigned on ordered_at
 {{
     config(
         cluster_by=['ordered_at::date']
