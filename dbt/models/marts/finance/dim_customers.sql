@@ -1,4 +1,4 @@
--- Customer dimension table with combined SaaS profiles
+-- Optimize memory consumption by filtering charges subqueries beforehand
 with customers as (
     select * from {{ ref('int_customers__joined') }}
 ),
