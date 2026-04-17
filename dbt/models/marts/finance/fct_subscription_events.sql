@@ -5,12 +5,14 @@
         on_schema_change='sync_all_columns'
     )
 }}
+
 with subscriptions as (
     select * from {{ ref('int_subscriptions__joined') }}
     {% if is_incremental() %}
     where period_start_at >= (select max(period_start_at) from {{ this }}) - interval '3 days'
     {% endif %}
 ),
+
 final as (
     select
         subscription_id,
@@ -30,4 +32,5 @@ final as (
         canceled_at
     from subscriptions
 )
+
 select * from final
