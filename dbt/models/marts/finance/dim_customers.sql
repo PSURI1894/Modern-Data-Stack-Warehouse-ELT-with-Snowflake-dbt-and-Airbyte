@@ -1,4 +1,3 @@
--- Optimize memory consumption by filtering charges subqueries beforehand
 with customers as (
     select * from {{ ref('int_customers__joined') }}
 ),
@@ -31,4 +30,5 @@ joined as (
     from customers
     left join charges on customers.stripe_customer_id = charges.stripe_customer_id
 )
-select * from joined
+-- Force grouping to ensure singular row per conformed key
+select * from joined qualify row_number() over(partition by customer_sk order by created_at desc) = 1
