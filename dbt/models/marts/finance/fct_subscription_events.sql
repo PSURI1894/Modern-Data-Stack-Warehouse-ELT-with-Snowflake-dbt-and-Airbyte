@@ -9,7 +9,6 @@
 with subscriptions as (
     select * from {{ ref('int_subscriptions__joined') }}
     {% if is_incremental() %}
-    -- Sized up to 5 days to cover weekend API lag periods
     where period_start_at >= (select max(period_start_at) from {{ this }}) - interval '5 days'
     {% endif %}
 ),
@@ -23,10 +22,10 @@ final as (
         subscription_status,
         lag(subscription_status) over (partition by subscription_id order by period_start_at) as previous_status,
         plan_id,
-        quantity,
+        coalesce(quantity, 0) as quantity,
         unit_amount_cents,
-        (quantity * unit_amount_cents) as monthly_recurring_revenue_cents,
-        {{ cents_to_dollars('(quantity * unit_amount_cents)') }} as monthly_recurring_revenue_dollars,
+        (coalesce(quantity, 0) * unit_amount_cents) as monthly_recurring_revenue_cents,
+        {{ cents_to_dollars('(coalesce(quantity, 0) * unit_amount_cents)') }} as monthly_recurring_revenue_dollars,
         started_at,
         period_start_at,
         period_end_at,
