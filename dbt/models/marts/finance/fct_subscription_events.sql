@@ -9,7 +9,8 @@
 with subscriptions as (
     select * from {{ ref('int_subscriptions__joined') }}
     {% if is_incremental() %}
-    where period_start_at >= (select max(period_start_at) from {{ this }}) - interval '3 days'
+    -- Sized up to 5 days to cover weekend API lag periods
+    where period_start_at >= (select max(period_start_at) from {{ this }}) - interval '5 days'
     {% endif %}
 ),
 
