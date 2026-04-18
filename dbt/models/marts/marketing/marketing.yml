@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: fct_pipeline_history
+    description: "Sales CRM opportunities lifecycle pipeline history"
+    columns:
+      - name: opportunity_id
+        tests:
+          - unique
+          - not_null
