@@ -1,4 +1,3 @@
--- Conformed marketing opportunity tracking models
 with opps as (
     select * from {{ ref('int_opportunities__enriched') }}
 ),
@@ -30,6 +29,7 @@ final as (
             else 0
         end as open_pipeline_amount,
         coalesce(leads.lead_source, 'direct-organic') as marketing_lead_source,
+        datediff('day', opps.created_at, opps.system_modstamp) as opportunity_age_days,
         opps.close_date,
         opps.created_at,
         opps.system_modstamp as snapshot_timestamp
