@@ -12,7 +12,8 @@ final as (
         stage_name,
         stage_category,
         probability,
-        -- Opportunity pipeline metrics
+        -- Probabilistic pipeline MRR
+        (opportunity_amount * coalesce(probability, 0) / 100) as expected_revenue_amount,
         case 
             when stage_name = 'Closed Won' then opportunity_amount
             else 0
