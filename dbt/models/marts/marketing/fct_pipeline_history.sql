@@ -1,3 +1,4 @@
+-- Conformed marketing opportunity tracking models
 with opps as (
     select * from {{ ref('int_opportunities__enriched') }}
 ),
