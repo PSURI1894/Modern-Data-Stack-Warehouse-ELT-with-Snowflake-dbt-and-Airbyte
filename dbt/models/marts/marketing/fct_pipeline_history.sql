@@ -12,6 +12,15 @@ final as (
         stage_name,
         stage_category,
         probability,
+        -- Opportunity pipeline metrics
+        case 
+            when stage_name = 'Closed Won' then opportunity_amount
+            else 0
+        end as closed_won_amount,
+        case 
+            when stage_name not in ('Closed Won', 'Closed Lost') then opportunity_amount
+            else 0
+        end as open_pipeline_amount,
         close_date,
         created_at,
         system_modstamp as snapshot_timestamp
