@@ -8,3 +8,6 @@ models:
         tests:
           - unique
           - not_null
+      - name: salesforce_account_id
+        tests:
+          - not_null
