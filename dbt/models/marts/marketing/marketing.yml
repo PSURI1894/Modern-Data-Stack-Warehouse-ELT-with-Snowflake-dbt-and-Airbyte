@@ -3,6 +3,9 @@ version: 2
 models:
   - name: fct_pipeline_history
     description: "Sales CRM opportunities lifecycle pipeline history"
+    meta:
+      owner: "sales-ops-team"
+      priority: "high"
     columns:
       - name: opportunity_id
         tests:
