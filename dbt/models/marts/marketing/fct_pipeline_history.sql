@@ -1,4 +1,3 @@
--- Optimized query path using Snowflake clustering on created dates
 {{
     config(
         cluster_by=['created_at::date']
@@ -36,7 +35,7 @@ final as (
         end as open_pipeline_amount,
         coalesce(leads.lead_source, 'direct-organic') as marketing_lead_source,
         datediff('day', opps.created_at, opps.system_modstamp) as opportunity_age_days,
-        opps.close_date,
+        cast(opps.close_date as timestamp_ntz) as close_date,
         opps.created_at,
         opps.system_modstamp as snapshot_timestamp
     from opps
