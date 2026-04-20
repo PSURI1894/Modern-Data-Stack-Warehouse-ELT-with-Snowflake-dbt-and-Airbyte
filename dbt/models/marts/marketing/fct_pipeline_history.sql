@@ -1,3 +1,9 @@
+-- Optimized query path using Snowflake clustering on created dates
+{{
+    config(
+        cluster_by=['created_at::date']
+    )
+}}
 with opps as (
     select * from {{ ref('int_opportunities__enriched') }}
 ),
