@@ -3,9 +3,11 @@
         cluster_by=['created_at::date']
     )
 }}
+
 with opps as (
     select * from {{ ref('int_opportunities__enriched') }}
 ),
+
 leads as (
     select 
         email, 
@@ -13,6 +15,7 @@ leads as (
         company 
     from {{ ref('stg_salesforce__leads') }}
 ),
+
 final as (
     select
         opps.opportunity_id,
@@ -41,4 +44,5 @@ final as (
     from opps
     left join leads on lower(opps.account_name) = lower(leads.company)
 )
+
 select * from final
