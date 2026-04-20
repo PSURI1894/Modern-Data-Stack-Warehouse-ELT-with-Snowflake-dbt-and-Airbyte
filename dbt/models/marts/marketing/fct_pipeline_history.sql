@@ -33,9 +33,9 @@ final as (
             when opps.stage_name not in ('Closed Won', 'Closed Lost') then opps.opportunity_amount
             else 0
         end as open_pipeline_amount,
-        coalesce(leads.lead_source, 'direct-organic') as marketing_lead_source,
+        coalesce(leads.lead_source, 'direct-organic') as attribution_lead_source,
         datediff('day', opps.created_at, opps.system_modstamp) as opportunity_age_days,
-        cast(opps.close_date as timestamp_ntz) as close_date,
+        cast(opps.close_date as timestamp_ntz) as closed_at,
         opps.created_at,
         opps.system_modstamp as snapshot_timestamp
     from opps
