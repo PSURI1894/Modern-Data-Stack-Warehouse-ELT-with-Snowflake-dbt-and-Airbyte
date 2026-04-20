@@ -3,14 +3,46 @@ version: 2
 models:
   - name: fct_pipeline_history
     description: "Sales CRM opportunities lifecycle pipeline history"
-    meta:
-      owner: "sales-ops-team"
-      priority: "high"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: opportunity_id
+        data_type: varchar
         tests:
           - unique
           - not_null
       - name: salesforce_account_id
+        data_type: varchar
         tests:
           - not_null
+      - name: account_name
+        data_type: varchar
+      - name: opportunity_name
+        data_type: varchar
+      - name: opportunity_amount
+        data_type: numeric
+      - name: account_tier
+        data_type: varchar
+      - name: stage_name
+        data_type: varchar
+      - name: stage_category
+        data_type: varchar
+      - name: probability
+        data_type: numeric
+      - name: expected_revenue_amount
+        data_type: numeric
+      - name: closed_won_amount
+        data_type: numeric
+      - name: open_pipeline_amount
+        data_type: numeric
+      - name: attribution_lead_source
+        data_type: varchar
+      - name: opportunity_age_days
+        data_type: integer
+      - name: closed_at
+        data_type: timestamp_ntz
+      - name: created_at
+        data_type: timestamp_ntz
+      - name: snapshot_timestamp
+        data_type: timestamp_ntz
