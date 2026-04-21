@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: fct_funnel_retention
+    description: "User interaction funnels and session retention fact table"
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
