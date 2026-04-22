@@ -2,7 +2,8 @@
     config(
         materialized='incremental',
         unique_key='event_id',
-        on_schema_change='sync_all_columns'
+        on_schema_change='sync_all_columns',
+        cluster_by=['event_timestamp::date']
     )
 }}
 with events as (
