@@ -24,13 +24,13 @@ session_events as (
         events.event_type,
         events.session_id,
         events.event_timestamp,
-        date_trunc('month', users.user_created_at) as cohort_month,
-        datediff('month', date_trunc('month', users.user_created_at), date_trunc('month', events.event_timestamp)) as cohort_age_months,
-        case when events.event_type = 'signup' then 1 else 0 end as step_signup,
-        case when events.event_type = 'onboarding_started' then 1 else 0 end as step_onboarding,
-        case when events.event_type = 'search_performed' then 1 else 0 end as step_search,
-        case when events.event_type = 'checkout_completed' then 1 else 0 end as step_checkout,
-        row_number() over (partition by events.session_id order by events.event_timestamp) as event_seq
+        cast(date_trunc('month', users.user_created_at) as date) as cohort_month,
+        cast(datediff('month', date_trunc('month', users.user_created_at), date_trunc('month', events.event_timestamp)) as integer) as cohort_age_months,
+        cast(case when events.event_type = 'signup' then 1 else 0 end as integer) as step_signup,
+        cast(case when events.event_type = 'onboarding_started' then 1 else 0 end as integer) as step_onboarding,
+        cast(case when events.event_type = 'search_performed' then 1 else 0 end as integer) as step_search,
+        cast(case when events.event_type = 'checkout_completed' then 1 else 0 end as integer) as step_checkout,
+        cast(row_number() over (partition by events.session_id order by events.event_timestamp) as integer) as event_seq
     from events
     left join users on events.postgres_user_id = users.postgres_user_id
 )
