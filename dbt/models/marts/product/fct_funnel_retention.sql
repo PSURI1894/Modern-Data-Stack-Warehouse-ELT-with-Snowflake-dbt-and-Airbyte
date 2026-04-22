@@ -19,7 +19,8 @@ session_events as (
         case when events.event_type = 'signup' then 1 else 0 end as step_signup,
         case when events.event_type = 'onboarding_started' then 1 else 0 end as step_onboarding,
         case when events.event_type = 'search_performed' then 1 else 0 end as step_search,
-        case when events.event_type = 'checkout_completed' then 1 else 0 end as step_checkout
+        case when events.event_type = 'checkout_completed' then 1 else 0 end as step_checkout,
+        row_number() over (partition by events.session_id order by events.event_timestamp) as event_seq
     from events
     left join users on events.postgres_user_id = users.postgres_user_id
 )
