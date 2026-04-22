@@ -1,5 +1,15 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='event_id',
+        on_schema_change='sync_all_columns'
+    )
+}}
 with events as (
     select * from {{ ref('stg_postgres__events') }}
+    {% if is_incremental() %}
+    where event_timestamp >= (select max(event_timestamp) from {{ this }}) - interval '3 days'
+    {% endif %}
 ),
 users as (
     select
