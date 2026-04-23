@@ -25,8 +25,9 @@ session_events as (
         events.event_type,
         events.session_id,
         events.event_timestamp,
-        cast(date_trunc('month', users.user_created_at) as date) as cohort_month,
-        cast(datediff('month', date_trunc('month', users.user_created_at), date_trunc('month', events.event_timestamp)) as integer) as cohort_age_months,
+        -- Unified UTC date conversion
+        cast(date_trunc('month', cast(users.user_created_at as timestamp_ntz)) as date) as cohort_month,
+        cast(datediff('month', date_trunc('month', cast(users.user_created_at as timestamp_ntz)), date_trunc('month', cast(events.event_timestamp as timestamp_ntz))) as integer) as cohort_age_months,
         cast(case when events.event_type = 'signup' then 1 else 0 end as integer) as step_signup,
         cast(case when events.event_type = 'onboarding_started' then 1 else 0 end as integer) as step_onboarding,
         cast(case when events.event_type = 'search_performed' then 1 else 0 end as integer) as step_search,
