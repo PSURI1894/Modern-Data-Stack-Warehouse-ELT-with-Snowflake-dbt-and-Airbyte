@@ -25,7 +25,6 @@ session_events as (
         events.event_type,
         events.session_id,
         events.event_timestamp,
-        -- Unified UTC date conversion
         cast(date_trunc('month', cast(users.user_created_at as timestamp_ntz)) as date) as cohort_month,
         cast(datediff('month', date_trunc('month', cast(users.user_created_at as timestamp_ntz)), date_trunc('month', cast(events.event_timestamp as timestamp_ntz))) as integer) as cohort_age_months,
         cast(case when events.event_type = 'signup' then 1 else 0 end as integer) as step_signup,
