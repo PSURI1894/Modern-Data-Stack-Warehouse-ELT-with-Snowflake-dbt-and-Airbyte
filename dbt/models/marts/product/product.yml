@@ -3,11 +3,36 @@ version: 2
 models:
   - name: fct_funnel_retention
     description: "User interaction funnels and session retention fact table"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: event_id
+        data_type: varchar
         tests:
           - unique
           - not_null
+      - name: postgres_user_id
+        data_type: integer
+      - name: event_type
+        data_type: varchar
       - name: session_id
+        data_type: varchar
         tests:
           - not_null
+      - name: event_timestamp
+        data_type: timestamp_ntz
+      - name: cohort_month
+        data_type: date
+      - name: cohort_age_months
+        data_type: integer
+      - name: step_signup
+        data_type: integer
+      - name: step_onboarding
+        data_type: integer
+      - name: step_search
+        data_type: integer
+      - name: step_checkout
+        data_type: integer
+      - name: event_seq
+        data_type: integer
