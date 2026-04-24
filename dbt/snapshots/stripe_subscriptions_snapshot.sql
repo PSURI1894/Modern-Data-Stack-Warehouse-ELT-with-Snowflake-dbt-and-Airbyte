@@ -7,6 +7,7 @@
       unique_key='subscription_id',
       strategy='timestamp',
       updated_at='period_start_at',
+      invalidate_hard_deletes=True,
     )
 }}
 
