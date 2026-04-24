@@ -1,3 +1,4 @@
+-- Snapshot tracking modifications in Salesforce stages
 {% snapshot salesforce_opportunities_snapshot %}
 
 {{
