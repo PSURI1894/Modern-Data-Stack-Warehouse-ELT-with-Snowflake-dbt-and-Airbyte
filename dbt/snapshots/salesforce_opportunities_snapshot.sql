@@ -1,5 +1,3 @@
--- Snapshot tracking modifications in Salesforce stages
--- Hard delete tracking enabled to catch remote CRM deletes
 {% snapshot salesforce_opportunities_snapshot %}
 
 {{
