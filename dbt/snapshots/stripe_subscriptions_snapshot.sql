@@ -1,3 +1,4 @@
+-- Stripe subscription snapshots
 {% snapshot stripe_subscriptions_snapshot %}
 
 {{
