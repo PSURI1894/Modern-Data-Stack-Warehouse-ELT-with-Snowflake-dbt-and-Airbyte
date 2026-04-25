@@ -1,4 +1,4 @@
--- Stripe subscription snapshots
+-- Period start timestamps forced to UTC
 {% snapshot stripe_subscriptions_snapshot %}
 
 {{
