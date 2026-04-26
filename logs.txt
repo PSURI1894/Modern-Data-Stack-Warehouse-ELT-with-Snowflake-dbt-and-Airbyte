@@ -1,1 +1,1 @@
-Build log 148: chore(dbt): adjust vertical spaces inside snapshots code
+Build log 153: chore(dbt): verify type configurations are mapped inside dbt_project yaml
