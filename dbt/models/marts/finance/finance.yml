@@ -51,6 +51,12 @@ models:
 
   - name: fct_orders
     description: "Stripe raw payment logs fact table"
+    columns:
+      - name: customer_sk
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
 
   - name: fct_subscription_events
     description: "Historical SaaS billing subscription events"
