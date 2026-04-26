@@ -3,9 +3,15 @@ version: 2
 models:
   - name: dim_customers
     description: "Core conformed client dimensions lookup database"
+    meta:
+      elementary:
+        freshness_sla: 86400
     config:
       contract:
         enforced: true
+    tests:
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 1
     columns:
       - name: customer_sk
         description: "Surrogate primary hashing key"
