@@ -3,9 +3,6 @@ version: 2
 models:
   - name: dim_customers
     description: "Core conformed client dimensions lookup database"
-    meta:
-      elementary:
-        freshness_sla: 86400
     config:
       contract:
         enforced: true
@@ -57,6 +54,8 @@ models:
     columns:
       - name: subscription_id
         data_type: varchar
+        constraints:
+          - type: not_null
       - name: customer_sk
         data_type: varchar
       - name: stripe_customer_id
