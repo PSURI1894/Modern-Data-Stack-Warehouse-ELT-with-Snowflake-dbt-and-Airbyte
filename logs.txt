@@ -1,1 +1,1 @@
-Build log 153: chore(dbt): verify type configurations are mapped inside dbt_project yaml
+Build log 161: chore(dbt): clean whitespace in singular sql tests
