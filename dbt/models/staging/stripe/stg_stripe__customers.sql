@@ -11,3 +11,4 @@ renamed as (
     from source
 )
 select * from renamed
+where customer_email is not null
