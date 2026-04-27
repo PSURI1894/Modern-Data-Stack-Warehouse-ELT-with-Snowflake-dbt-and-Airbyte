@@ -11,6 +11,7 @@ sources:
           - name: id
             tests:
               - not_null
+              - unique
       - name: charges
         description: "Monetary transactions database transactions ledger"
       - name: subscriptions
