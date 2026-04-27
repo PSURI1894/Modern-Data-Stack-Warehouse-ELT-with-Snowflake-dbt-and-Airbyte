@@ -7,6 +7,10 @@ sources:
     tables:
       - name: customers
         description: "Customer accounts metadata tracked within payment gateway"
+        columns:
+          - name: id
+            tests:
+              - not_null
       - name: charges
         description: "Monetary transactions database transactions ledger"
       - name: subscriptions
