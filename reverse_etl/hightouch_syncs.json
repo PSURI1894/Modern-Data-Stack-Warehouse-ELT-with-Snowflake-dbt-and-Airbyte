@@ -2,6 +2,11 @@
   "sync_name": "Salesforce Account Health Sync",
   "source_model": "ANALYTICS.marts.dim_customers",
   "destination": "Salesforce Accounts CRM",
+  "sync_mode": "upsert",
+  "primary_key": "salesforce_account_id",
+  "delta_tracking": {
+    "method": "primary_key_comparisons"
+  },
   "mappings": {
     "salesforce_account_id": "Id",
     "customer_health_score": "Health_Score__c",
