@@ -1,0 +1,10 @@
+{
+  "sync_name": "Salesforce Account Health Sync",
+  "source_model": "ANALYTICS.marts.dim_customers",
+  "destination": "Salesforce Accounts CRM",
+  "mappings": {
+    "salesforce_account_id": "Id",
+    "customer_health_score": "Health_Score__c",
+    "total_ltv_dollars": "LTV__c"
+  }
+}
