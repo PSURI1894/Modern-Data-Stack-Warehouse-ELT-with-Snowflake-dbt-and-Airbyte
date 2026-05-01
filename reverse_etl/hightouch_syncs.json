@@ -4,6 +4,9 @@
   "destination": "Salesforce Accounts CRM",
   "sync_mode": "upsert",
   "primary_key": "salesforce_account_id",
+  "pii_filtering": {
+    "email_masked": false
+  },
   "api_limit_tuning": {
     "bulk_batch_size": 10000,
     "max_concurrent_connections": 5
