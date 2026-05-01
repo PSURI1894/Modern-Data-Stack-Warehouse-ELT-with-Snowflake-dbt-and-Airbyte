@@ -8,6 +8,9 @@
     "bulk_batch_size": 10000,
     "max_concurrent_connections": 5
   },
+  "alerting": {
+    "on_failure": ["data-alerts@company.com"]
+  },
   "delta_tracking": {
     "method": "primary_key_comparisons"
   },
