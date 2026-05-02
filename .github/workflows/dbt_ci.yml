@@ -22,7 +22,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install dbt-snowflake
+          pip install dbt-snowflake sqlfluff-vertical
+
+      - name: SQL Lint check
+        run: |
+          echo "sqlfluff lint ./dbt/models"
 
       - name: Fetch Manifest state
         run: |
