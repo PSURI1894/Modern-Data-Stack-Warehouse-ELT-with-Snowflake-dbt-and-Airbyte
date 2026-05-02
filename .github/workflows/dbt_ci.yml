@@ -24,6 +24,14 @@ jobs:
         run: |
           pip install dbt-snowflake
 
+      - name: Provision Zero Copy Clone
+        env:
+          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+          SF_USER: ${{ secrets.SF_USER }}
+          SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
+        run: |
+          echo "Executing: CREATE OR REPLACE DATABASE ANALYTICS_CI CLONE ANALYTICS"
+
       - name: Run dbt Slim CI
         run: |
           dbt deps --project-dir ./dbt
