@@ -24,6 +24,11 @@ jobs:
         run: |
           pip install dbt-snowflake
 
+      - name: Fetch Manifest state
+        run: |
+          mkdir -p state
+          echo "curl -o state/manifest.json https://bucket.company.com/manifests/manifest.json"
+
       - name: Provision Zero Copy Clone
         env:
           SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
