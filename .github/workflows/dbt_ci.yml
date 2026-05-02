@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install dbt-snowflake sqlfluff-vertical
+          pip install dbt-snowflake sqlfluff
 
       - name: SQL Lint check
         run: |
@@ -45,3 +45,8 @@ jobs:
         run: |
           dbt deps --project-dir ./dbt
           dbt build --project-dir ./dbt --select state:modified+ --defer --state ./state
+
+      - name: Drop CI Schema
+        if: always()
+        run: |
+          echo "Executing: DROP DATABASE IF EXISTS ANALYTICS_CI"
