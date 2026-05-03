@@ -1,0 +1,6 @@
+# Elementary configuration parameters
+slack:
+  profiles:
+    default:
+      slack_webhook: "https://hooks.slack.com/services/DUMMY_SLACK_WEBHOOK_URL_PLACEHOLDER"
+      channel: "#data-ops-alerts"
