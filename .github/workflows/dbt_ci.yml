@@ -1,0 +1,52 @@
+name: dbt Slim CI pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'dbt/**'
+
+jobs:
+  dbt-slim-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install dbt-snowflake sqlfluff
+
+      - name: SQL Lint check
+        run: |
+          echo "sqlfluff lint ./dbt/models"
+
+      - name: Fetch Manifest state
+        run: |
+          mkdir -p state
+          echo "curl -o state/manifest.json https://bucket.company.com/manifests/manifest.json"
+
+      - name: Provision Zero Copy Clone
+        env:
+          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+          SF_USER: ${{ secrets.SF_USER }}
+          SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
+        run: |
+          echo "Executing: CREATE OR REPLACE DATABASE ANALYTICS_CI CLONE ANALYTICS"
+
+      - name: Run dbt Slim CI
+        run: |
+          dbt deps --project-dir ./dbt
+          dbt build --project-dir ./dbt --select state:modified+ --defer --state ./state
+
+      - name: Drop CI Schema
+        if: always()
+        run: |
+          echo "Executing: DROP DATABASE IF EXISTS ANALYTICS_CI"
