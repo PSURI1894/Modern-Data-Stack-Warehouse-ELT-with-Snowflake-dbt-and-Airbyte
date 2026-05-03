@@ -4,3 +4,11 @@ slack:
     default:
       slack_webhook: "https://hooks.slack.com/services/DUMMY_SLACK_WEBHOOK_URL_PLACEHOLDER"
       channel: "#data-ops-alerts"
+
+anomaly_detection:
+  table_anomalies:
+    - row_count
+    - freshness
+  column_anomalies:
+    - null_count
+    - null_percent
