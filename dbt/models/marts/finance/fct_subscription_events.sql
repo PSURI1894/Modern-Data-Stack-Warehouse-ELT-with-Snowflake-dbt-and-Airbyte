@@ -9,7 +9,8 @@
 with subscriptions as (
     select * from {{ ref('int_subscriptions__joined') }}
     {% if is_incremental() %}
-    where period_start_at >= (select max(period_start_at) from {{ this }}) - interval '5 days'
+    -- Optimized lookback filter window from 5 to 7 days to cover extended stripe payments lag
+    where period_start_at >= (select max(period_start_at) from {{ this }}) - interval '7 days'
     {% endif %}
 ),
 
