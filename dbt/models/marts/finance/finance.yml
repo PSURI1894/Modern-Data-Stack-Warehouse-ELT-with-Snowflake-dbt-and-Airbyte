@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Core conformed client dimensions lookup database"
+    meta:
+      elementary:
+        freshness_sla: 86400
+    config:
+      contract:
+        enforced: true
+    tests:
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 1
+    columns:
+      - name: customer_sk
+        description: "Surrogate primary hashing key"
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: stripe_customer_id
+        description: "Natural key from payment system"
+        data_type: varchar
+      - name: salesforce_account_id
+        description: "Natural key from CRM platform"
+        data_type: varchar
+      - name: postgres_user_id
+        description: "Natural key from production databases"
+        data_type: integer
+      - name: customer_name
+        description: "Cleaned full legal customer name"
+        data_type: varchar
+      - name: customer_email
+        description: "Cleaned lowercase communication address"
+        data_type: varchar
+      - name: total_ltv_cents
+        description: "Customer life-time value measured in cents"
+        data_type: numeric
+      - name: total_ltv_dollars
+        description: "Customer life-time value measured in standard dollars"
+        data_type: numeric
+      - name: total_charges_count
+        description: "Number of completed payment orders"
+        data_type: integer
+      - name: customer_health_score
+        description: "Internal engagement index"
+        data_type: integer
+      - name: created_at
+        description: "Profile timestamp registration"
+        data_type: timestamp_ntz
+
+  - name: fct_orders
+    description: "Stripe raw payment logs fact table"
+    columns:
+      - name: customer_sk
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
+
+  - name: fct_subscription_events
+    description: "Historical SaaS billing subscription events"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: subscription_id
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: customer_sk
+        data_type: varchar
+      - name: stripe_customer_id
+        data_type: varchar
+      - name: salesforce_account_id
+        data_type: varchar
+      - name: subscription_status
+        data_type: varchar
+      - name: previous_status
+        data_type: varchar
+      - name: plan_id
+        data_type: varchar
+      - name: quantity
+        data_type: integer
+      - name: unit_amount_cents
+        data_type: integer
+      - name: monthly_recurring_revenue_cents
+        data_type: integer
+      - name: monthly_recurring_revenue_dollars
+        data_type: numeric
+      - name: started_at
+        data_type: timestamp_ntz
+      - name: period_start_at
+        data_type: timestamp_ntz
+      - name: period_end_at
+        data_type: timestamp_ntz
+      - name: canceled_at
+        data_type: timestamp_ntz

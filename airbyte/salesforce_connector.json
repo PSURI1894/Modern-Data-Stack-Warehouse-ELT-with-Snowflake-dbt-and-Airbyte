@@ -1,0 +1,9 @@
+{
+  "sourceName": "Salesforce CRM",
+  "config": {
+    "client_id": "3MVG9...",
+    "client_secret": "secret123",
+    "refresh_token": "refresh_token_abc",
+    "is_sandbox": false
+  }
+}

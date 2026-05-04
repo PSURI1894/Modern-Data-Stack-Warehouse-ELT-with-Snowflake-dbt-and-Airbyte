@@ -1,0 +1,25 @@
+snowflake_profile:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: xy12345.us-east-1
+      user: DBT_TRANSFORMER
+      password: SuperSecurePassword123!
+      role: TRANSFORMER_ROLE
+      database: ANALYTICS
+      warehouse: TRANSFORMING_WH
+      schema: dev_parth
+      threads: 4
+      client_session_keep_alive: False
+    prod:
+      type: snowflake
+      account: xy12345.us-east-1
+      user: DBT_TRANSFORMER_PROD
+      password: SuperSecureProdPassword123!
+      role: TRANSFORMER_ROLE
+      database: ANALYTICS
+      warehouse: TRANSFORMING_WH
+      schema: marts
+      threads: 8
+      client_session_keep_alive: True

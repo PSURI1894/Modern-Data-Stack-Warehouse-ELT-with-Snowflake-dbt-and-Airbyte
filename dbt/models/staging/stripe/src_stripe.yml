@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: RAW
+    schema: STRIPE
+    tables:
+      - name: customers
+        description: "Customer accounts metadata tracked within payment gateway"
+        columns:
+          - name: id
+            tests:
+              - not_null
+              - unique
+      - name: charges
+        description: "Monetary transactions database transactions ledger"
+      - name: subscriptions
+        description: "Subscriptions metadata tracking SaaS service periods"

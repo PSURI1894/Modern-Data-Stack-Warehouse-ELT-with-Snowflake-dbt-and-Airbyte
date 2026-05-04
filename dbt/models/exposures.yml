@@ -1,0 +1,15 @@
+version: 2
+
+exposures:
+  - name: executive_financial_dashboard
+    type: dashboard
+    maturity: high
+    url: https://lightdash.company.com/projects/1/dashboards/15
+    description: "High-level Executive MRR, ARR, and LTV trends dashboard"
+    owner:
+      name: "Dave"
+      email: "dave.analytics@company.com"
+    depends_on:
+      - ref('dim_customers')
+      - ref('fct_subscription_events')
+      - ref('fct_orders')
